@@ -1,12 +1,7 @@
-const layout = require('../views/layout');
+const { layout, loadTemplate } = require('../util/template');
 
-const html = `
-<div>
-    <h1>About Us</h1>
-    <p>About page</p>
-</div>`;
-
-module.exports = (req, res) => {
-    res.write(layout(html, 'About'));
+module.exports = async (req, res) => {
+    const aboutPage = await loadTemplate('about');
+    res.write(await layout(aboutPage, 'About'));
     res.end();
 };
